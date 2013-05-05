@@ -1,0 +1,11 @@
+dropbox:
+  app_key:     BLA
+  app_secret:  BLA
+  mode:        sandbox
+  user_token:  BLA
+  user_secret: BLA
+
+items_to_show: 5
+description_file:
+  enabled: true
+  format: ".txt"

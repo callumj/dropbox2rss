@@ -35,7 +35,7 @@ module Dropbox2Rss
     def description
       return "" unless Dropbox2Rss.include_description_companion?
       @description ||= begin
-        companion = client.find("#{path}.txt") rescue nil
+        companion = client.find("#{path}#{Dropbox2Rss.configuration[:description_file][:format]}") rescue nil
         if companion
           companion.download
         else
@@ -58,7 +58,7 @@ module Dropbox2Rss
         item.enclosure(url: encoded_link, type: file.mime_type)
         item.pubDate     date.rfc822
         item.guid        { item.cdata(encoded_link) }
-        item.description { item.cdata("A thing") }
+        item.description { item.cdata(description.gsub(/(\r?\n)+/, "<br />")) }
       end
     end
 
